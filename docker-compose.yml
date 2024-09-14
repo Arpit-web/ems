@@ -1,0 +1,20 @@
+version: '3.8'
+
+services:
+  frontend:
+    build:
+      context: ./frontend  # Path to the frontend directory
+      dockerfile: Dockerfile
+    ports:
+      - "3000:80"  # Map port 3000 to the frontend's nginx server (port 80 inside container)
+    restart: always
+
+  backend:
+    build:
+      context: ./backend  # Path to the backend directory
+      dockerfile: Dockerfile
+    ports:
+      - "5000:5000"  # Map port 5000 to the backend's server (adjust the port if needed)
+    restart: always
+    environment:
+      - NODE_ENV=production
